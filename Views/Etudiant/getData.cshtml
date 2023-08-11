@@ -1,0 +1,49 @@
+@model IEnumerable<EtudiantProject.Models.Etudiant>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+             <h2>   Liste des etudiants</h2>
+            </div>
+            <div class="col text-right">
+<a  asp-action="create" class="btn btn-primary" >Ajouter un nouveau etudiant</a>
+            </div>
+            @if(Model.Count()>0){
+             <table class="table table-bordered">
+              <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Date de naissance</th>
+      <th scope="col">Niveau</th>
+          <th scope="col">Actions</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var item in Model)
+      {
+           <tr>
+      <th >@item.nom</th>
+      <td>@item.adresse</td>
+      <td>@item.dateNaiss</td>
+      <td>@item.niveau</td>
+      <td><a class="btn btn-success"   asp-action="update" asp-route-Id="@item.id">update</a>
+      <a class="btn btn-danger"  asp-action="delete"asp-route-Id="@item.id">delete</a></td>
+
+     
+    
+    </tr>
+   
+      }
+   
+  </tbody>
+</table>
+            }else{
+            <div><h2>
+                Aucun etudiant
+            </h2></div>
+            }
+
+        </div>
+
+    </div>
